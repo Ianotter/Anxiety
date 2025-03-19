@@ -37,8 +37,8 @@ class _BreathingHome extends State<BreathingHome> {
               child: Image.asset('assets/images/suncloud.png'),
             ),
             SizedBox(
-                width: 200,
-                height: 50,
+                width: 500,
+                height: 70,
                 child: CustomizedBtn(
                   label: '開始呼吸訓練',
                   onPressed: () {

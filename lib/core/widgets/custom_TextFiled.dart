@@ -21,8 +21,8 @@ class CustomTextFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: SizedBox(
-                  width: 280,
-                  height: 45,
+                  width: 500,
+                  height: 56,
                   child: TextField(
                     controller: controller,
                     obscureText: isPassword, //是否隱藏輸入內容

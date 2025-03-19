@@ -8,10 +8,34 @@ class BreathingEnd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+
     return GradientScaffold(
         gradientBackground: AppColors.brBackground, 
-        body: Center(
-          child: Column(
+        body: Stack(
+          children: [
+
+            Positioned( 
+            left: -screenWidth * 0.45, // 左邊雲朵的位置
+            top: screenHeight * 0.2,
+            child: Image.asset(
+              'assets/images/left_cloud.png',
+              width: 900,)
+               ),
+
+               Positioned(
+            right: -screenWidth * 0.45, // 右邊雲朵的位置
+            top: screenHeight * 0.2,
+            child: Image.asset(
+              'assets/images/right_cloud.png',
+              width: 900,
+            ),
+          ),
+
+            Center(
+            child: Column(
             mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -25,21 +49,21 @@ class BreathingEnd extends StatelessWidget {
                 ),
               const SizedBox(height: 60,),
               SizedBox(
-                width: 200,
+                width: 300,
                 child: Image.asset('assets/images/lightsun.png'),
               ),
               const SizedBox(height: 60,),
               SizedBox(
-                width: 200,
-                height: 50,
+                width: 500,
+                height: 70,
                 child: CustomizedBtn(label: '再一次',onPressed: () {
                     Navigator.pushNamed(context, '/breathingoptions');
                   },),
               ),
               const SizedBox(height: 20,),
               SizedBox(
-                width: 200,
-                height: 50,
+                width: 500,
+                height: 70,
                 child: CustomizedBtn(label: '回首頁',onPressed: () {
                     Navigator.pushNamed(context, '/brhome');
                   },),
@@ -47,6 +71,8 @@ class BreathingEnd extends StatelessWidget {
               SizedBox(height: MediaQuery.of(context).size.height*0.05),
             ],
           ),
+          ),
+          ],
         ));
   }
 }

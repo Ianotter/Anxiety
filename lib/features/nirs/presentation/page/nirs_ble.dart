@@ -17,43 +17,48 @@ class _NirsBleConnect extends State<NirsBleConnect> {
     return GradientScaffold(
       gradientBackground: AppColors.nirsBackground,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.topLeft,
               child: IconButton(
                 onPressed: () {
                   Navigator.pop(context); // 回上一頁
                 },
-                icon: const Icon(Icons.arrow_back_ios_new),
+                icon: const Icon(Icons.arrow_back_ios_new,size: 50,),
                 color: Colors.black,
               ),
             ),
             SizedBox(
-              width: 200,
+              width: 300,
               height: 200,
               child: Image.asset('assets/images/nirscloud.png'),
             ),
-          
-          const Icon(Icons.bluetooth),
+
+          const SizedBox(height: 30),
+
+          const Icon(Icons.bluetooth,size: 45,),
+
+          const SizedBox(height: 30),
           // 搜尋ble device區
           Container(
-            width: 320,
-            height: 200,
+            width: 500,
+            height: 234,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
               color: Color.fromRGBO(255, 255, 255, 0.75),
             ),
             child: ListView.builder(
-                padding: const EdgeInsets.all(5),
-                itemCount: 3,
+                padding: const EdgeInsets.all(20),
+                itemCount: 2,
                 itemBuilder: (BuildContext context, index) {
                   return const DeviceBtn();
                 }),
           ),
+          const SizedBox(height: 30),
+
           SizedBox(
-              width: 225,
-              height: 40,
+              width: 500,
+              height: 50,
               child: CustomizedBtn(
                 label: '下一步',
                 onPressed: () {

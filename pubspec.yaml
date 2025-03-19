@@ -89,12 +89,15 @@ flutter:
     - assets/images/sun.png
     - assets/images/head.png
     - assets/images/hold.svg
-    - assets/images/cloudright.png
-    - assets/images/cloudleft.png
     - assets/icon/brelaxlogo.png
     - assets/images/suncloud.png
     - assets/images/lightsun.png
     - assets/images/nirscloud.png
+    - assets/images/arrow.svg
+    - assets/images/left_cloud.png
+    - assets/images/right_cloud.png
+    - assets/images/sunbad.png
+    - assets/images/sunnormal.png
 
     
 

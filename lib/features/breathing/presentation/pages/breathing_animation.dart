@@ -24,11 +24,14 @@ class _BreathingAnimation extends State<BreathingAnimation> {
   int _seconds = 1; // 預設秒數
   int _totalSeconds = 0;
   String _phase = "inhale"; // 初始狀態：吸氣
-  double _cloudOffset = 0.6; // 初始雲朵位置
+  double _cloudOffset = 0.7; // 初始雲朵位置
   String selectedPage = 'BREATHING';
+  String _sunImage = "assets/images/sunbad.png"; // 預設表情
+
 
   bool _isStopped = false;
   bool showNavList =false;
+  bool _isFirstCycle = true; 
 
   // 各階段的時間
   Map<String, Map<String, int>> breathingPatterns = {
@@ -54,9 +57,30 @@ class _BreathingAnimation extends State<BreathingAnimation> {
     });
   }
 
+  int _getTotalCycles(int inhale, int hold, int exhale, int duration) {
+    int cycleTime = inhale + hold + exhale; // 一次完整循環的總秒數
+    int totalSeconds = duration * 60; // 訓練總時間（分鐘轉換成秒）
+    return totalSeconds ~/ cycleTime; // 計算最多可以跑幾個循環
+  }
+
+  int _getPhaseDuration(String phase) {
+    switch (phase) {
+      case "inhale":
+        return widget.inhale;
+      case "hold":
+        return widget.hold;
+      case "exhale":
+        return widget.exhale;
+      default:
+        return 1;
+    }
+  }
+
   // 切換呼吸階段並控制動畫
   void _startBreathingCycle() async {
+    int totalCycles = _getTotalCycles(widget.inhale, widget.hold, widget.exhale, widget.duration);
     
+
     // 5 秒準備時間
     for (int i = 5; i > 0; i--) {
       if (!mounted) return;
@@ -66,37 +90,45 @@ class _BreathingAnimation extends State<BreathingAnimation> {
       });
       await Future.delayed(const Duration(seconds: 1));
     }
-
-    int totalElapsed = 0;
-    while (mounted && totalElapsed < _totalSeconds) {
+    int currentCycle = 0;
+    while (mounted && currentCycle < totalCycles) {
       for (var phase in ["inhale", "hold", "exhale"]) {
         if (_isStopped) return; // 如果停止動畫則返回
         int maxSeconds = _getPhaseDuration(phase);
         setState(() {
           _phase = phase;
           _seconds = 1;
+          
           _cloudOffset = (phase == "inhale")
-              ? 0
+              ? 0.3
               : (phase == "exhale")
-                  ? 0.6
+                  ? 0.7
                   : _cloudOffset;
+
+           if (phase == "hold") {
+            // 這裡使用 _isFirstCycle 判斷是否是第一次循環
+            if (_isFirstCycle) {
+              _sunImage = "assets/images/sunnormal.png";  // 第一次循環改變表情
+              _isFirstCycle = false;  // 第二次循環
+            } else {
+              _sunImage = "assets/images/sun.png";  // 第二次循環改表情
+            }
+          } 
+
         });
 
-        totalElapsed += maxSeconds; // 更新總計時
+        
         for (int i = 1; i <= maxSeconds; i++) {
          if (!mounted || _isStopped) return;  // 如果停止動畫則返回
           setState(() {
             _seconds = i;// 更新當前的秒數，讓 UI 顯示計時變化
           });
           await Future.delayed(const Duration(seconds: 1));
-        }
-
-        if (totalElapsed >= _totalSeconds) {
-          _navigateToBreathingEnd(); // 時間到回上一頁
-          return;
-        }
+        }  // 時間到回上一頁
       }
+      currentCycle++; 
     }
+    _navigateToBreathingEnd();
   }
 
   void _stopAnimation() {
@@ -115,18 +147,7 @@ class _BreathingAnimation extends State<BreathingAnimation> {
     );
   }
 
-  int _getPhaseDuration(String phase) {
-    switch (phase) {
-      case "inhale":
-        return widget.inhale;
-      case "hold":
-        return widget.hold;
-      case "exhale":
-        return widget.exhale;
-      default:
-        return 1;
-    }
-  }
+  
 
   //Breathing UI
   @override
@@ -185,12 +206,12 @@ class _BreathingAnimation extends State<BreathingAnimation> {
               child: Text(
                 '$_seconds',
                 style: const TextStyle(
-                    fontSize: 60,
+                    fontSize: 55,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                     shadows: [
                           Shadow(
-                            color: Color.fromARGB(115, 0, 0, 0),
+                             color: Color.fromARGB(115, 0, 0, 0),
                             offset: Offset(0, 0),
                             blurRadius: 15,
                           ),
@@ -205,28 +226,30 @@ class _BreathingAnimation extends State<BreathingAnimation> {
                 height: 100,
               ),
               Image.asset(
-                'assets/images/sun.png',
-                width: 200,
+                _sunImage,
+                width: 250,
+                 key: ValueKey(_sunImage),
               )
             ],
           ),
           AnimatedPositioned(
             duration: Duration(seconds: _getPhaseDuration(_phase)),
             left: screenWidth * _cloudOffset,
-            top: screenHeight * 0.35,
+            top: screenHeight * 0.3,
             child: Image.asset(
-              'assets/images/cloudright.png',
-              width: 500,
+              'assets/images/right_cloud.png',
+              width: 1010,
+              
             ),
           ),
           AnimatedPositioned(
             duration: Duration(seconds: _getPhaseDuration(_phase)),
             right: screenWidth * _cloudOffset,
-            top: screenHeight * 0.35,
+            top: screenHeight * 0.3,
             child: Image.asset(
-              'assets/images/cloudleft.png',
-              width: 500,
-              height: 500,
+              'assets/images/left_cloud.png',
+              width: 1010,
+              
             ),
           ),
        Positioned(

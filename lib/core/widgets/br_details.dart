@@ -26,21 +26,22 @@ class BrDetails extends StatelessWidget {
       decoration: BoxDecoration(
           color: const Color(0xC4FFFFFF),
           borderRadius: BorderRadius.circular(20)),
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 41),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             title,
             style: const TextStyle(
-              fontSize: 20,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 6,),
+          
           Container(
-            width: 290,
+            width: 607,
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: const Color(0xFFCDEDFF),
@@ -49,23 +50,21 @@ class BrDetails extends StatelessWidget {
             child: Text(
               shortID,
               textAlign: TextAlign.center,
-              style: FontStyles.text15,
+              style:TextStyle(fontSize: 24,fontWeight: FontWeight.w700,),
             ),
           ),
-          const SizedBox(height: 6,),
+          
           Text(
             detailed,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 20,
             ),
           ),
-          const SizedBox(height: 6,),
+          
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Breathstep(text: inhale, iconPath: 'assets/images/breath.svg'),
-              Breathstep(text: hold, iconPath: 'assets/images/hold.svg'),
-              Breathstep(text: exhale, iconPath: 'assets/images/breath.svg'),
+              Breathstep(textin: inhale, texth: hold,textex: exhale, ),
             ],
           )
         ],
@@ -75,30 +74,50 @@ class BrDetails extends StatelessWidget {
 }
 
 class Breathstep extends StatelessWidget {
-  final String text;
-  final String iconPath; //圖片路徑
+  final String textin;
+  final String texth;
+  final String textex;
 
-  const Breathstep({super.key, required this.text, required this.iconPath});
+
+  const Breathstep({super.key, required this.textin,required this.texth, required this.textex});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 85,
-      height: 30,
+      width: 607,
+      height: 50,
       decoration: BoxDecoration(color: const Color(0xFFCDEDFF),borderRadius: BorderRadius.circular(10)),
       child: Row(
-      mainAxisAlignment: MainAxisAlignment.center, // 子元素水平從左到右排列
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 子元素水平從左到右排列
   crossAxisAlignment: CrossAxisAlignment.center, // 子元素在垂直方向居中對齊
       children: [
-        SvgPicture.asset(iconPath, width: 14, height: 14, fit: BoxFit.contain),
-        const SizedBox(
-          width: 5,
-        ),
+        SvgPicture.asset('assets/images/breath.svg', width: 25, height: 25, fit: BoxFit.contain),
+        
         Text(
-          text,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+          textin,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
            textAlign: TextAlign.center,
-        )
+        ),
+
+        SvgPicture.asset('assets/images/arrow.svg', width: 30, height: 30, fit: BoxFit.contain),//箭頭
+
+        SvgPicture.asset('assets/images/hold.svg', width: 25, height: 25, fit: BoxFit.contain),
+        
+        Text(
+          texth,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+           textAlign: TextAlign.center,
+        ),
+
+        SvgPicture.asset('assets/images/arrow.svg', width: 30, height: 30, fit: BoxFit.contain),//箭頭
+
+        SvgPicture.asset('assets/images/breath.svg', width: 25, height: 25, fit: BoxFit.contain),
+        
+        Text(
+          textex,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+           textAlign: TextAlign.center,
+        ),
       ],
     ),
     );

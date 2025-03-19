@@ -10,13 +10,13 @@ class DeviceBtn extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          minimumSize: const Size(290, 30),
+          minimumSize: const Size(450, 40),
           backgroundColor: Colors.white, // 設定背景顏色
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8), // 設定圓角
             side: const BorderSide(
               color: Color.fromRGBO(184, 184, 184, 1), // 設定邊框顏色
-              width: 1,
+              width: 2,
             ),
           ),
           shadowColor: Colors.transparent

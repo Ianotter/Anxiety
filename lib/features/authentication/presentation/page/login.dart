@@ -18,13 +18,6 @@ class loginpage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 10),
-            const Text(
-              'Brelax',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
-                  fontWeight: FontWeight.w700),
-            ),
             SizedBox(
               width: 150,
               height: 150,
@@ -33,31 +26,31 @@ class loginpage extends StatelessWidget {
             const SizedBox(height: 10),
             const Text(
               '電子郵件',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),
             const CustomTextFiled(hintText: '電子郵件'),
             const SizedBox(height: 10),
             const Text(
               '密碼',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             const CustomTextFiled(hintText: '密碼',isPassword: true,),
-            const SizedBox(height: 30,),
+            const SizedBox(height: 60,),
            SizedBox(
-              width: 200,
+              width: 500,
               height: 50,
-              child: CustomizedBtn(label: '登入', onPressed: () {
+              child: CustomizedBtn(label: '登入',  onPressed: () {
                     Navigator.pushNamed(context, '/home1');
                   },
                   ),
             ),
             const SizedBox(
-              height: 20,
+              height: 25,
             ),
             SizedBox(
-              width: 200,
+              width: 500,
               height: 50,
               child: CustomizedBtn(label: '註冊', onPressed: () {
                 Navigator.pushNamed(context,'/register');

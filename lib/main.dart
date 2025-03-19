@@ -1,5 +1,6 @@
 import 'package:brelax/demo.dart';
 import 'package:brelax/features/authentication/presentation/page/login_options.dart';
+import 'package:brelax/features/breathing/presentation/pages/breathing_end.dart';
 import 'package:brelax/features/breathing/presentation/pages/breathing_options.dart';
 import 'package:brelax/features/breathing/presentation/pages/home.dart';
 import 'package:brelax/features/authentication/presentation/page/login.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
           trackHeight: 30,
         ),
       ),
-      home: const Demo(),
+      home:  LoginOptions(),
+
       routes: {
         '/login': (context) => const loginpage(),
         '/home1': (context) => const Home(),

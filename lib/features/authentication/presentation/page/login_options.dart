@@ -33,7 +33,7 @@ class LoginOptions extends StatelessWidget {
             ),
             const SizedBox(height: 40,),
             SizedBox(
-              width: 200,
+              width: 500,
               height: 50,
               child: CustomizedBtn(label: '一般用戶',
               onPressed: () {
@@ -43,9 +43,9 @@ class LoginOptions extends StatelessWidget {
             ),
             const SizedBox(height: 20,),
             const SizedBox(
-              width: 200,
+              width: 500,
               height: 50,
-              child:CustomizedBtn(label: '工程用戶'),
+              child:CustomizedBtn(label: '工程用戶',),
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.05),
           ],

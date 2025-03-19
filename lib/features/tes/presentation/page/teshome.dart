@@ -37,8 +37,8 @@ class _TesHome extends State<TesHome> {
               child: Image.asset('assets/images/device.png'),
             ),
             SizedBox(
-                width: 200,
-                height: 50,
+                width: 500,
+                height: 70,
                 child: CustomizedBtn(
                   label: '開始電刺激',
                   onPressed: () {

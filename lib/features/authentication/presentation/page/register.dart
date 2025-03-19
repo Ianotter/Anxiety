@@ -52,7 +52,7 @@ class Register extends StatelessWidget {
                 ),
                 const SizedBox(height: 30,),
                 SizedBox(
-                  width: 200,
+                  width: 500,
                   height: 50,
                   child: CustomizedBtn(
                     label: '完成註冊',onPressed: () {

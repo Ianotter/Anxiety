@@ -4,6 +4,7 @@ import 'package:brelax/core/constants/font_style.dart';
 class CustomizedBtn extends StatelessWidget {
   final VoidCallback? onPressed;
   final String label;
+ 
 
   const CustomizedBtn({super.key, this.onPressed, required this.label,});
 
@@ -15,7 +16,8 @@ class CustomizedBtn extends StatelessWidget {
             backgroundColor: const Color.fromRGBO(255, 255, 255, 1), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(42))),
         child: Text(
           label,
-          style: FontStyles.content,
+          style: TextStyle(fontSize: 24,fontWeight: FontWeight.w700,color: Color.fromRGBO(75, 75, 75,1)),
+
         ));
   }
 }

@@ -19,7 +19,7 @@ class FontStyles {
   static TextStyle? text15 = const TextStyle(
     color: Color.fromRGBO(75, 75, 75, 1),
     fontFamily: 'Inter',
-    fontSize: 15,
+    fontSize: 18,
     letterSpacing: 0.5,
     fontWeight: FontWeight.w700,
   );

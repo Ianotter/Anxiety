@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Timepicker extends StatefulWidget {
+class Timepicker1 extends StatefulWidget {
   final Function(int) onTimeSelected;
 
-  const Timepicker({
+  const Timepicker1({
     super.key,
     required this.onTimeSelected
   });
 
   @override
-  State<Timepicker> createState() => _TimepickerState();
+  State<Timepicker1> createState() => _TimepickerState();
 }
 
-class _TimepickerState extends State<Timepicker>{
+class _TimepickerState extends State<Timepicker1>{
   int selectedMinute = 1; // 初始選擇 1 分鐘
   final PageController _pageController = PageController(viewportFraction: 0.18);//
 
